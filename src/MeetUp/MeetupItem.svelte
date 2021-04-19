@@ -1,14 +1,16 @@
 <script>
-    export let title;
-    export let subtitle;
-    export let imgUrl;
-    export let description;
-    export let address;
-    export let email;
+  import Button from "../UI/Button.svelte";
+  
+  export let title;
+  export let subtitle;
+  export let imgUrl;
+  export let description;
+  export let address;
+  export let email;
 </script>
 
 <style>
-article {
+  article {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     border-radius: 5px;
     background: white;
@@ -62,20 +64,20 @@ article {
 </style>
 
 <article>
-    <header>
-        <h1>{title}</h1>
-        <h2>{subtitle}</h2>
-        <p>{address}</p>
-    </header>
-    <div class="image">
-        <img src="{imgUrl}" alt="">
-    </div>
-    <div class="content">
-        <p>{description}</p>
-    </div>
-    <footer>
-        <a href="mailto:{email}">Contact</a>
-        <button>Show Details</button>
-        <button>Favorite</button>
-    </footer>
+  <header>
+      <h1>{title}</h1>
+      <h2>{subtitle}</h2>
+      <p>{address}</p>
+  </header>
+  <div class="image">
+      <img src="{imgUrl}" alt="">
+  </div>
+  <div class="content">
+      <p>{description}</p>
+  </div>
+  <footer>
+      <Button href="mailto:{email}" caption="Contact"/>
+      <Button type="button" mode="outline" caption="Favorite"/>
+      <Button type="button" caption="Show Details"/>
+  </footer>
 </article>
