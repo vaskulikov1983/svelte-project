@@ -19,7 +19,8 @@
             description: 'We will going in forest all day to evenign, and after that will have a dinner',
             imgUrl: 'https://yobte.ru/uploads/posts/2019-11/the-forest-69-foto-26.jpg',
             address: 'Perm forest',
-            contactEmail: 'forest@test.com' 
+            contactEmail: 'forest@test.com',
+            isFavorite: false
         }, 
         {
             id: 2,
@@ -28,7 +29,8 @@
             description: 'We will swim in clear water and take all positive emotions from this with us',
             imgUrl: 'https://avatars.mds.yandex.net/get-zen_doc/1550999/pub_5d57cb7c46f4ff00ad002728_5d57e136a06eaf00ad1c76ff/scale_1200',
             address: 'Perm swimming pool',
-            contactEmail: 'swim@test.com' 
+            contactEmail: 'swim@test.com',
+            isFavorite: false
         }
     ];
 
@@ -44,6 +46,17 @@
         };
         meetups = [newMeetup, ...meetups];
     }
+
+    const toggleFavorite = (evt) => {
+        const id = evt.detail;
+        const updatedMeetup = {...meetups.find(item => item.id === id)};
+        updatedMeetup.isFavorite = !updatedMeetup.isFavorite;
+        const meetupIndex = meetups.findIndex(item => item.id === id);
+        const updatedMeetups = [...meetups];
+        updatedMeetups[meetupIndex] = updatedMeetup;
+        meetups = updatedMeetups;
+
+    };
 </script>
 
 <style>
@@ -104,7 +117,7 @@
         <Button type="submit" caption="Save"/>
     </form>
 
-    <MeetupGrid {meetups}/>
+    <MeetupGrid {meetups} on:toggleFavorite={toggleFavorite}/>
 </main>
 
 
